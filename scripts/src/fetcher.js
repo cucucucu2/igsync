@@ -186,7 +186,7 @@ setTimeout(function() {
 console.log('Delay')
     if (that.query_hash) {
       const data = JSON.stringify({
-        id: 1807199,
+        id: 1807199, //facebook
 		first: that.syncEach,
         after: null,
       });
@@ -216,7 +216,7 @@ setTimeout(function() {
 console.log('Delay')
     if (that.query_hash) {
       const data = JSON.stringify({
-        id: 268161204,
+        id: 268161204, //whatsapp
 		first: that.syncEach,
         after: null,
       });
@@ -248,7 +248,7 @@ console.log('Delay')
 chrome.browserAction.setBadgeText({text: '3'});
     if (that.query_hash) {
       const data = JSON.stringify({
-        id: 25025320,
+        id: 25025320, //instagram
 		first: that.syncEach,
         after: null,
       });
