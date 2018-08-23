@@ -1,0 +1,78 @@
+<!doctype html><html><head><title>IG Sync - Feed</title><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet"><link href="https://fonts.googleapis.com/css?family=Montserrat:500,700" rel="stylesheet"><link rel="stylesheet" href="styles/vendor.css"><link rel="stylesheet" href="styles/main.css">
+<style id="feedStyle"></style>
+<style id="darkstyle" type="text/css">@media screen {
+
+/* Leading rule */
+html {
+  -webkit-filter: invert(100%) hue-rotate(180deg) !important;
+  filter: invert(100%) hue-rotate(180deg) !important;
+}
+
+/* Reverse rule */
+img,
+video,
+:not(object):not(body)>embed,
+object,
+svg image,
+[style*="background:url"],
+[style*="background-image:url"],
+[style*="background: url"],
+[style*="background-image: url"],
+[background],
+twitterwidget {
+  -webkit-filter: invert(100%) hue-rotate(180deg) !important;
+  filter: invert(100%) hue-rotate(180deg) !important;
+}
+[style*="background:url"] *,
+[style*="background-image:url"] *,
+[style*="background: url"] *,
+[style*="background-image: url"] *,
+input,
+[background] * {
+  -webkit-filter: none !important;
+  filter: none !important;
+}
+.compatibility-with-darkreader-below-4-3-3 {
+  background: white !important;
+}
+
+/* Font */
+* {
+  -webkit-text-stroke: 0.2px !important;
+  text-stroke: 0.2px !important;
+}
+
+/* Text contrast */
+html {
+  text-shadow: 0 0 0 !important;
+}
+
+/* Full screen */
+:-webkit-full-screen, :-webkit-full-screen * {
+  -webkit-filter: none !important;
+  filter: none !important;
+}
+:-moz-full-screen, :-moz-full-screen * {
+  -webkit-filter: none !important;
+  filter: none !important;
+}
+:fullscreen, :fullscreen * {
+  -webkit-filter: none !important;
+  filter: none !important;
+}
+
+/* Page background */
+html {
+  background: rgb(0,0,0) !important;
+}
+
+/* Custom rules */
+.compatibility-with-darkreader-below-4-3-3 {
+    background: white !important;
+}
+
+}
+</style>
+</head><body><div class="navbar-fixed"><nav><div class="nav-wrapper"><a class="btn-link brand-logo">IG Sync</a> <a data-target="sideNav" class="btn-link sidenav-trigger"><i class="material-icons">menu</i></a><ul class="left hide-on-med-and-down"><li class="active"><a href="feed.html">Feed</a></li></ul><ul class="right hide-on-med-and-down"><li><a class="dropdown-trigger btn btn-link" data-target="feedDates">Selecione a data (<span class="titleDate"></span>)</a></li><li><input id="filterFeed" placeholder="Filtrar"></li></ul></div></nav></div><ul class="sidenav" id="sideNav"><li><a href="feed.html">Feed</a></li><li><a class="dropdown-trigger btn btn-link" data-target="sideFeedDates">Selecione a data (<span class="titleDate"></span>)</a></li><div id="sideFeedDates" class="collection dropdown-content"></div></ul><div class="container">
+<!--//<a class="right btn-floating btn-large waves-effect waves-light blue-grey"><i class="material-icons">settings</i></a>-->
+<h3 class="title">Últimos Feed - <span class="titleDate"></span></h3><div id="feedDates" class="collection dropdown-content"></div><div id="sortFeed" class="row valign-wrapper"><h5 class="col">Ordenar por:</h5><a data-sort="date" class="waves-effect waves-light btn teal lighten-3">Data</a> <a data-sort="likes" class="waves-effect waves-light btn">Curtidas</a> <a data-sort="comments" class="waves-effect waves-light btn">Comentários</a><div class="switch col"><label>Crescente <input id="sortOrder" type="checkbox"> <span class="lever"></span> Decrescente</label></div></div><form class="row"><h5 class="col">Procurar:</h5><input id="searchFeed" class="col s8 m6" placeholder="Colocar Username / User ID / Legenda / Localização / Username Marcado" type="text"> <label for="searchTagged"><input type="checkbox" id="searchTagged"> <span>Username Marcado</span></label> <label for="searchLiked"><input type="checkbox" id="searchLiked"> <span>Gostei</span></label> <button id="resetSearch" class="waves-effect waves-light btn" type="reset">Reniciar</button></form><div class="row center-fields"><h5 class="col">Opções de exibição:</h5><div class="input-field col s3 m1"><input id="noOfColumns" type="number" value="3" class="active validate"> <label for="noOfColumns">Numero de colunas:</label></div><label for="squarePhoto"><input type="checkbox" id="squarePhoto" /><span>Foto quadrada</span></label><h6 class="col">Esconder:</h6><div class="checkboxes"><label for="displayUsername"><input id="displayUsername" data-hide=".owner" class="displayOpts" type="checkbox"> <span>Username</span></label> <label for="displayLocation"><input id="displayLocation" data-hide=".location" class="displayOpts" type="checkbox"> <span>Localização</span></label> <label for="displayProfile"><input id="displayProfile" data-hide=".card-profile" class="displayOpts" type="checkbox"> <span>Perfil</span></label> <label for="displayTime"><input id="displayTime" data-hide="time" class="displayOpts" type="checkbox"> <span>Hora</span></label> <label for="displayCaption"><input id="displayCaption" data-hide=".caption" class="displayOpts" type="checkbox"> <span>Legenda</span></label> <label for="displayActions"><input id="displayActions" data-hide=".card-action" class="displayOpts" type="checkbox"> <span>Ações</span></label></div></div><div class="divider"></div><div class="section"><ul class="pagination center"><li class="pagination-left waves-effect"><a><i class="material-icons">chevron_left</i></a></li><li class="pagination-right waves-effect"><a><i class="material-icons">chevron_right</i></a></li></ul><div id="feedItems" class="row"></div><ul class="pagination center"><li class="pagination-left waves-effect"><a><i class="material-icons">chevron_left</i></a></li><li class="pagination-right waves-effect"><a><i class="material-icons">chevron_right</i></a></li></ul></div></div><script src="scripts/libs/chrome-promise.js"></script><script src="scripts/libs/moment.min.js"></script><script src="scripts/vendor.js"></script><script src="scripts/libs/isotope.pkgd.min.js"></script><script src="scripts/src/database.js"></script><script src="scripts/src/media.js"></script><script src="scripts/main.js"></script></body></html>
